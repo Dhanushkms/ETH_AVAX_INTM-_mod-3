@@ -65,7 +65,7 @@ contract  myToken {
     }
 }
 
-'''
+```
 
 ## Author
 
