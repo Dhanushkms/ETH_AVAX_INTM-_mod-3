@@ -28,40 +28,33 @@ To use this contract, you can deploy it on Remix, an online Solidity IDE.
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract  myToken {
-    string public name;
-    string public symbol;
-    uint8 public decimals;
-    uint256 public totalSupply;
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract myToken is ERC20 {
     address public owner;
 
-    mapping(address => uint256) public balances;
-
-    constructor(string memory _name, string memory _symbol, uint8 _decimals, uint256 _initialSupply) {
-        name = _name;
-        symbol = _symbol;
-        decimals = _decimals;
-        totalSupply = _initialSupply * 10**uint256(_decimals);
+    constructor(
+        string memory name,
+        string memory symbol,
+        uint8 decimals,
+        uint256 initialSupply
+    ) ERC20(name, symbol) {
+        _mint(msg.sender, initialSupply * (10**decimals));
         owner = msg.sender;
-        balances[msg.sender] = totalSupply;
     }
 
     function mint(address to, uint256 amount) public {
         require(msg.sender == owner, "Only the owner can mint tokens.");
-        balances[to] += amount;
-        totalSupply += amount;
+        _mint(to, amount);
     }
 
     function burn(uint256 amount) public {
-        require(balances[msg.sender] >= amount, "Insufficient balance to burn.");
-        balances[msg.sender] -= amount;
-        totalSupply -= amount;
+        _burn(msg.sender, amount);
     }
 
-    function transfer(address to, uint256 amount) public {
-        require(balances[msg.sender] >= amount, "Insufficient balance to transfer.");
-        balances[msg.sender] -= amount;
-        balances[to] += amount;
+    function transfer(address to, uint256 amount) public override returns (bool) {
+        _transfer(msg.sender, to, amount);
+        return true;
     }
 }
 
