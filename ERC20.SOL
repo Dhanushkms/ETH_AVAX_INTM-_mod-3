@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract myToken is ERC20 {
-    address public owner;
+    address public oner;
 
     constructor(
         string memory name,
