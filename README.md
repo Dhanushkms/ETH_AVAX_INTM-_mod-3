@@ -10,7 +10,7 @@ To use this contract, you can deploy it on Remix, an online Solidity IDE.
 1. Go to the Remix website at https://remix.ethereum.org/.
 2. Create a new file by clicking on the "+" icon in the left-hand sidebar. Save the file with a .sol extension (e.g., myToken.sol).
 3. Copy and paste the provided code into the file.
-4. Make sure the Solidity compiler version is set to "0.8.0" or a compatible version.
+4. Make sure the Solidity compiler version is set to "0.8.0" or a compatible version
 5. Compile the code by clicking on the "Solidity Compiler" tab and then clicking "Compile myToken.sol."
 6. Deploy the contract by clicking on the "Deploy & Run Transactions" tab. Select the "myToken" contract from the dropdown menu and click "Deploy."
 
